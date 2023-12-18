@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a27198b8a482aca4ea7f03a09193a3d5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Fire: {fileID: 1269666908460415772, guid: 197f52949e2d97345aeb7d79696acc14, type: 3}
+  - Ground: {fileID: 310402477750151182, guid: 8871be27339de2b46bc01a6be68b7bdb, type: 3}
+  - Metal: {fileID: 2036173058776060855, guid: 0eddcf1c74219f94abdb5540ce70d6bd, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

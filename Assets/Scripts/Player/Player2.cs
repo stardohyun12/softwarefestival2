@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{   
-
+public class Player2 : MonoBehaviour
+{
+    public GameObject Fire;
+    public GameObject Ground;
+    public GameObject Metal;
+    public int CharacterType = 0;
     // Start is called before the first frame update
     void Start()
     {

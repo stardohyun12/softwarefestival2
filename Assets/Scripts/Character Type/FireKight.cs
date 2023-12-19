@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class FireKight : MonoBehaviour
 {
-    //플레이어 구분
+    //???????? ????
     int PlayID = 0;
-    //방향구분
+    //????????
     float h =0f;
-    //수치
+    //????
     float MaxSpeed =5.5f;
 
     public Animator anim;
@@ -39,13 +39,22 @@ public class FireKight : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.RightArrow))
                 h = 1;
         }
+
         rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
-        if (rigid.velocity.x > MaxSpeed)//왼쪽 MaxSpeed
+        if (rigid.velocity.x > MaxSpeed)//???? MaxSpeed
                 rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
-        else if (rigid.velocity.x < MaxSpeed * (-1))//오른쪽 MaxSpeed
+        else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
             rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
 
-        //속도조절
+        if(rigid.velocity.x < 0.4)
+        {
+            
+        }
+
+
+
+
+        //????????
         if (Input.GetKeyUp(KeyCode.A))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
@@ -55,7 +64,7 @@ public class FireKight : MonoBehaviour
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
 
-        //공격
+        //????
         if (Input.GetKeyDown(KeyCode.M))
         {
             ComboAtak();

@@ -26,4 +26,10 @@ public class GroundMonk : MonoBehaviour
         }
 
     }
+
+
+    void ComboAtack()
+    {
+
+    }
 }

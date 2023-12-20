@@ -28,9 +28,17 @@ public class FireKight : MonoBehaviour
         
         
             if (Input.GetKeyDown(KeyCode.A))
+            {
+                
                 h = -1;
+            }
+                
             else if (Input.GetKeyDown(KeyCode.D))
+            {
                 h = 1;
+                
+            }
+                
         
         else if(PlayID == 2) 
         {
@@ -46,28 +54,33 @@ public class FireKight : MonoBehaviour
         else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
             rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
 
-        if(rigid.velocity.x < 0.4)
-        {
-            
-        }
+
+        
 
 
 
 
-        //????????
+        //속도조절
         if (Input.GetKeyUp(KeyCode.A))
         {
-            rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
+            h = 0;
+            
+                rigid.velocity = new Vector2(0f, rigid.velocity.y);
+            
         }
         else if (Input.GetKeyUp(KeyCode.D))
         {
-            rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
+            h = 0;
+            
+                rigid.velocity = new Vector2(0f, rigid.velocity.y);
+            
         }
 
         //????
         if (Input.GetKeyDown(KeyCode.M))
         {
             ComboAtak();
+
         }
         else if(Input.GetKeyDown(KeyCode.N)) 
         {
@@ -78,21 +91,32 @@ public class FireKight : MonoBehaviour
             SpAtk();
         }
 
+        if(rigid.velocity.x !=0 )
+        {
+            Run();
+        }
 
 
     }
 
+    void Run()
+    {
+        anim.GetBool("Fire_IsRuning");
+    }
     void ComboAtak()
     {
         anim.SetTrigger("Fire_ComboAtk");
+        rigid.velocity = new Vector2(0f, rigid.velocity.y);
     }
     void Atk2()
     {
         anim.SetTrigger("Fire_Atk2");
+        rigid.velocity = new Vector2(0f, rigid.velocity.y);
     }
     void SpAtk()
     {
         anim.SetTrigger("Fire_SpAtk");
+        rigid.velocity = new Vector2(0f, rigid.velocity.y);
     }
 
 

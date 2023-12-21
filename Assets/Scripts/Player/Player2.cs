@@ -43,6 +43,10 @@ public class Player2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player2CharacterType = SendInformation.Player2CharcterType;
+
+        
+
         if (Player2CharacterType == 1)
         {
             Instantiate(Fire, Player2Spown);

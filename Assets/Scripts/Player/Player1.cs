@@ -18,11 +18,14 @@ public class Player1 : MonoBehaviour
 
     private void Awake()
     {
-        
+
+
     }
     // Start is called before the first frame update
     void Start()
     {
+        Player1CharacterType = SendInformation.Player1CharcterType;
+
         if (Player1CharacterType == 1)
         {
             Instantiate(Fire,Player1Spown);

@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player1
+  - Player2
+  - Player2_Fire
+  - Player2_Ground
+  - Player1_Fire
+  - Player1_Ground
   layers:
   - Default
   - TransparentFX

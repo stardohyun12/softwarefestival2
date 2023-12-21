@@ -25,75 +25,18 @@ public class FireKight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                
-                h = -1;
-            }
-                
-            else if (Input.GetKeyDown(KeyCode.D))
-            {
-                h = 1;
-                
-            }
-                
-        
-        else if(PlayID == 2) 
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                h = -1;
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
-                h = 1;
-        }
-
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
-        if (rigid.velocity.x > MaxSpeed)//???? MaxSpeed
-                rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
-        else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
-            rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
+        Move();
+        PlayerInput();
+        AttakInput();
 
 
-        
-
-
-
-
-        //속도조절
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            h = 0;
-            
-                rigid.velocity = new Vector2(0f, rigid.velocity.y);
-            
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            h = 0;
-            
-                rigid.velocity = new Vector2(0f, rigid.velocity.y);
-            
-        }
-
-        //????
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ComboAtak();
-
-        }
-        else if(Input.GetKeyDown(KeyCode.N)) 
-        {
-            Atk2();
-        }
-        else if(Input.GetKeyDown(KeyCode.B)) 
-        {
-            SpAtk();
-        }
-
-        if(rigid.velocity.x !=0 )
+        if(rigid.velocity.x !=0)
         {
             Run();
+        }
+        else if(rigid.velocity.x ==0)
+        {
+            anim.SetBool("Fire_IsRuning",false);
         }
 
 
@@ -101,7 +44,7 @@ public class FireKight : MonoBehaviour
 
     void Run()
     {
-        anim.GetBool("Fire_IsRuning");
+        anim.SetBool("Fire_IsRuning",true);
     }
     void ComboAtak()
     {
@@ -120,5 +63,70 @@ public class FireKight : MonoBehaviour
     }
 
 
+    void Move()
+    {
+        //Move
+        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        if (rigid.velocity.x > MaxSpeed)//???? MaxSpeed
+            rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
+        else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
+            rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
+        //속도조절
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            h = 0;
+
+            rigid.velocity = new Vector2(0f, rigid.velocity.y);
+
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            h = 0;
+
+            rigid.velocity = new Vector2(0f, rigid.velocity.y);
+        }
+    }
+    void PlayerInput()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+
+            h = -1;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            h = 1;
+
+        }
+
+
+        else if (PlayID == 2)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                h = -1;
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+                h = 1;
+        }
+    }
+
+    void AttakInput()
+    {
+        //????
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ComboAtak();
+
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            Atk2();
+        }
+        else if (Input.GetKeyDown(KeyCode.B))
+        {
+            SpAtk();
+        }
+    }
+    
 
 }

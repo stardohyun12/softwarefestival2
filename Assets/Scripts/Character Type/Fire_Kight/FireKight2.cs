@@ -41,6 +41,7 @@ public class FireKight2 : MonoBehaviour
 
     bool isAttacking;
 
+    float Satkcooltime = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +61,7 @@ public class FireKight2 : MonoBehaviour
         Run();
         PlayerInput();
 
-
+        Satkcooltime -= Time.deltaTime;
 
 
 
@@ -80,7 +81,7 @@ public class FireKight2 : MonoBehaviour
             rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
         else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
             rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
-        //속도조절
+        //????????
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             h = 0;
@@ -118,7 +119,16 @@ public class FireKight2 : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.K))
         {
-            SpAtk();
+            if (Satkcooltime <= 0)
+            {
+                SpAtk();
+                Satkcooltime = 3f;
+            }
+            else
+            {
+
+            }
+            
         }
     }
 
@@ -230,6 +240,11 @@ public class FireKight2 : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        anim.SetTrigger("Fire_Takehit");
         Health = Health - damage;
     }
 

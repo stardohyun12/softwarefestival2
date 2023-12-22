@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FireKight : MonoBehaviour
 {
@@ -37,12 +39,18 @@ public class FireKight : MonoBehaviour
 
     bool isAttacking;
 
+    float Satkcooltime = 0f;
+
+    public float _timeScale = 1;
+
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         rigid=GetComponent<Rigidbody2D>();
         render=GetComponent<SpriteRenderer>();
+        
         AttackRange(false);
         AttackRange2(false);
         isAttacking = false;
@@ -57,9 +65,8 @@ public class FireKight : MonoBehaviour
         Run();
         PlayerInput();
 
-
-       
-}
+        Satkcooltime -= Time.deltaTime;
+    }
 
 
     void Move()
@@ -119,7 +126,16 @@ public class FireKight : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
-            SpAtk();
+            if(Satkcooltime <=0)
+            {
+                SpAtk();
+                Satkcooltime = 3f;
+            }
+            else
+            {
+                
+            }
+            
             
         }
     }
@@ -238,10 +254,18 @@ public class FireKight : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(Health <= 0 )
+        {
+            Destroy(gameObject);
+        }
+        anim.SetTrigger("Fire_Takehit");
         Health=Health - damage;
+        
+      
     }
 
-   
-
+    
 
 }
+
+

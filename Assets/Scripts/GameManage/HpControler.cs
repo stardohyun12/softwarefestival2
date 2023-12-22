@@ -16,31 +16,38 @@ public class HpControler : MonoBehaviour
     float Player1Hp=100;
     float Player2Hp=100;
 
+    private GameObject p1;
+    private GameObject p2;
+
     private void Awake()
     {
-        slider1 = GetComponent<Slider>();
-        slider2 = GetComponent<Slider>();
+       
         Player1Type = SendInformation.Player1CharcterType;
         Player2Type = SendInformation.Player2CharcterType;
 
-        if(Player1Type == 1)
+        
+        
+    }
+
+    private void Start()
+    {
+        if (Player1Type == 1)
         {
-            slider1.value = GetComponent<FireKight>().Health /100; 
+            p1 = GameObject.FindWithTag("Player1_Fire");
         }
-        else if(Player1Type == 2) 
+        else if (Player1Type == 2)
         {
-            slider1.value = GetComponent<GroundMonk>().Health / 100;
+            p1 = GameObject.FindWithTag("Player1_Ground");
         }
 
-        if(Player2Type ==1)
+        if (Player2Type == 1)
         {
-            slider2.value = GetComponent<FireKight>().Health / 100;
+            p2 = GameObject.FindWithTag("Player2_Fire");
         }
-        else if (Player2Type == 2) 
+        else if (Player2Type == 2)
         {
-            slider2.value= GetComponent<GroundMonk>().Health / 100;
+            p2 = GameObject.FindWithTag("Player2_Ground");
         }
-        
     }
 
     // Update is called once per frame
@@ -48,20 +55,20 @@ public class HpControler : MonoBehaviour
     {
         if (Player1Type == 1)
         {
-            slider1.value = GetComponent<FireKight>().Health / 100;
+            slider1.value = p1.GetComponent<FireKight>().Health/100;
         }
         else if (Player1Type == 2)
         {
-            slider1.value = GetComponent<GroundMonk>().Health / 100;
+            slider1.value = p1.GetComponent<GroundMonk>().Health/100;
         }
 
         if (Player2Type == 1)
         {
-            slider2.value = GetComponent<FireKight>().Health / 100;
+            slider2.value = p2.GetComponent<FireKight2>().Health/100;
         }
         else if (Player2Type == 2)
         {
-            slider2.value = GetComponent<GroundMonk>().Health / 100;
+            slider2.value = p2.GetComponent<GroundMonk2>().Health/100;
         }
     }
     

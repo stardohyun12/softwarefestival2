@@ -22,6 +22,7 @@ public class GroundMonk2 : MonoBehaviour
 
     bool isAttacking;
 
+    float Satkcooltime=0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +38,7 @@ public class GroundMonk2 : MonoBehaviour
         PlayerInput();
         AttakInput();
         Run();
-
+        Satkcooltime -= Time.deltaTime;
 
 
 
@@ -53,15 +54,15 @@ public class GroundMonk2 : MonoBehaviour
             rigid.velocity = new Vector2(MaxSpeed, rigid.velocity.y);
         else if (rigid.velocity.x < MaxSpeed * (-1))//?????? MaxSpeed
             rigid.velocity = new Vector2(MaxSpeed * (-1), rigid.velocity.y);
-        //속도조절
-        if (Input.GetKeyUp(KeyCode.A))
+        //????????
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             h = 0;
 
             rigid.velocity = new Vector2(0f, rigid.velocity.y);
 
         }
-        else if (Input.GetKeyUp(KeyCode.D))
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             h = 0;
 
@@ -86,12 +87,18 @@ public class GroundMonk2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             ComboAtak();
-
-
         }
         else if (Input.GetKeyDown(KeyCode.J))
         {
+            if (Satkcooltime <= 0)
+            {
+                SpAtack();
+                Satkcooltime = 3f;
+            }
+            else
+            {
 
+            }
         }
         else if (Input.GetKeyDown(KeyCode.K))
         {
@@ -117,6 +124,13 @@ public class GroundMonk2 : MonoBehaviour
         Invoke("AttackRagetrue", 0.1f);
         Invoke("AttackRangeflse", 0.3f);
         rigid.velocity = new Vector2(0f, rigid.velocity.y);
+    }
+
+    void SpAtack()
+    {
+        anim.SetTrigger("Ground_Spatk");
+        Invoke("AttackRangetrue2", 1f);
+        Invoke("AttackRangeflse2", 2f);
     }
 
     void AttackRange(bool isAttack)
@@ -183,6 +197,11 @@ public class GroundMonk2 : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (Health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        anim.SetTrigger("Ground_Takehit");
         Health = Health - damage;
     }
 
@@ -190,6 +209,13 @@ public class GroundMonk2 : MonoBehaviour
     {
         AttackRange(true);
     }
+
+    void AttackRangetrue2()
+    {
+        AttackRange2(true);
+    }
+
+    
 
 
 

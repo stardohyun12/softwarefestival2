@@ -24,12 +24,12 @@ public class Player1 : MonoBehaviour
         if (Player1CharacterType == 1)
         {
             Instantiate(Fire, Player1Spown);
-            //slider1.value = GetComponent<FireKight>().Health / 100;
+            
         }
         if (Player1CharacterType == 2)
         {
             Instantiate(Ground, Player1Spown);
-            //slider1.value = GetComponent<GroundMonk>().Health / 100;
+            
         }
     }
     // Start is called before the first frame update
